@@ -22,7 +22,8 @@
 		<link rel="stylesheet" href="css/animate.css" />
 
 		<link rel="shortcut icon" type="image/ico" href="img/favicon.ico" />
-		<link rel="manifest" href="manifest.json" />
+		<link id="manifest-link" rel="manifest" href="manifest.json" />
+
 		<meta name="theme-color" content="#3498db" />
 	</head>
 	<body>
@@ -137,7 +138,18 @@
 			<!-- Fin del mensaje -->
 		</ul>
 		<!-- Fin Lista de mensajes -->
-
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				const manifestLink = document.getElementById("manifest-link");
+				if (window.location.hostname === "localhost") {
+					// Ruta para desarrollo
+					manifestLink.href = "manifest.json";
+				} else {
+					// Ruta para producción
+					manifestLink.href = "/dxtwittor/manifest.json";
+				}
+			});
+		</script>
 		<script src="js/libs/jquery.js"></script>
 		<script src="js/app.js"></script>
 	</body>
