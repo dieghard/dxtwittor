@@ -1,5 +1,11 @@
+var url = window.location.href;
+var swLocation = "/dxtwittor/sw.js"; //path donde se encuentra el service worker
+
 if (navigator.serviceWorker) {
-	navigator.serviceWorker.register("/sw.js");
+    if if (url.includes("localhost") || url.startsWith("127") || url.startsWith("190")) {
+        swLocation = "/sw.js";
+    }
+	navigator.serviceWorker.register(swLocation);
 }
 
 // Referencias de jQuery
