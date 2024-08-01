@@ -1,17 +1,19 @@
 var url = window.location.href;
-var swLocation = "/dxtwittor/sw.js"; //path donde se encuentra el service worker
+var swLocation = "/dxtwittor/sw.js"; // Ruta para producción
 
 if (navigator.serviceWorker) {
-	if (
-		url.includes("localhost") ||
-		url.startsWith("127") ||
-		url.startsWith("190")
-	) {
-		swLocation = "/sw.js";
+	if (url.includes("localhost") || url.includes("127.0.0.1")) {
+		swLocation = "/sw.js"; // Ruta para desarrollo
 	}
-	navigator.serviceWorker.register(swLocation);
+	navigator.serviceWorker
+		.register(swLocation)
+		.then(function (registration) {
+			console.log("Service Worker registered with scope:", registration.scope);
+		})
+		.catch(function (error) {
+			console.error("Service Worker registration failed:", error);
+		});
 }
-
 // Referencias de jQuery
 
 var titulo = $("#titulo");
